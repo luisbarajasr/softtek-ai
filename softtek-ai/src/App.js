@@ -1,26 +1,47 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Fullpage, { FullPageSections, FullpageSection, FullpageNavigation} from "@ap.cx/react-fullpage";
+import LandingPage from "./components/LandingPage";
+import LandingPageCategory from "./components/LandingPageCategory";
+import backgroundVideo from "./assets/landing_background.mp4";
+
 
 function App() {
+  const sectionStyle = "vh-100 w-100"
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fullpage>
+      <FullpageNavigation />
+        <FullPageSections>
+          <FullpageSection
+            className={sectionStyle}
+            style={{ position: "relative"}}
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                zIndex: "-1"
+              }}
+            >
+              <source src={backgroundVideo} type="video/mp4" />
+            </video>
+            <LandingPage />
+          </FullpageSection>
+
+          <FullpageSection className={sectionStyle + " bg-black "}>
+            <LandingPageCategory />
+          </FullpageSection>
+          <FullpageSection className={sectionStyle}>
+            <h1>Section 3</h1>
+          </FullpageSection>
+        </FullPageSections>
+    </Fullpage>
   );
 }
+
 
 export default App;
