@@ -25,7 +25,7 @@ function ProductCard(props) {
     let negativeWords = await queryModel(promptTemplate + 'Give me the negative words related to the product reviews, give me the data (value as the repetitions of the word and name as the word itself) in an array. Example: [{value: 10, name: "calidad"}, {value: 20, name: "durable"}}] ONLY the array, not more not less' )
     let positiveReviewsPercentage = await queryModel(promptTemplate + 'Give me the percentage of positive reviews, answer me just the number DONT REPLY with any additional text' )
     let negativeReviewsPercentage = await queryModel(promptTemplate + 'Give me the percentage of negative reviews, answer me just the number DONT REPLY with any additional text' )
-    let repeatedWords = await queryModel(promptTemplate + 'Give me the most repeated words in the product reviews specified, give me the csv with the words and the number of times they are repeated, ONLY the csv, not more not less' )
+    let repeatedWords = await queryModel(promptTemplate + 'Give me the most repeated words in the product reviews specified in list format' )
     let positiveKeyReviews = await queryModel(promptTemplate + 'Give me the most important positive reviews, give me the reviews separated by commas')
     let negativeKeyReviews = await queryModel(promptTemplate + 'Give me the most important negative reviews, give me the reviews separated by commas')
     
@@ -55,6 +55,7 @@ function ProductCard(props) {
     setProductPageData({
       name: props.name,
       reviewAverage,
+      reviewsCount,
       positiveWords,
       negativeWords,
       positiveReviewsPercentage,
