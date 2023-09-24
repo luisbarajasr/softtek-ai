@@ -43,7 +43,7 @@ function WordsChart(props) {
     };
   };
 
-  return(
+  return (
     <>
       <p
         className="fw-bold mb-0 border-bottom pb-1 mb-1"
@@ -53,15 +53,15 @@ function WordsChart(props) {
       >
         Palabras {props.type}
       </p>
-    <ReactECharts
-      style={{ height: "150px" }}
-      option={getOptionPie()}
-      notMerge={true}
-      lazyUpdate={true}
-    />
+      <ReactECharts
+        style={{ height: "300px" }}
+        option={getOptionPie()}
+        notMerge={true}
+        lazyUpdate={true}
+      />
     </>
 
-)
+  )
 }
 
 export default WordsChart

@@ -23,7 +23,7 @@ function ProductPageSecondSlide() {
       },
       xAxis: {
         type: 'category',
-        data: ['A', 'B', 'C', 'D', 'E'],
+        data: ['calidad', 'durable', 'bonito', 'barato', 'elegante'],
         axisLabel: {
           interval: 0,
           textStyle: {
@@ -59,11 +59,11 @@ function ProductPageSecondSlide() {
   return (
     <div className="h-100 d-flex flex-column justify-content-center">
       <ReactECharts
-      option={getOption()} // Use the getOption function to get ECharts options
-      notMerge={true}
-      lazyUpdate={true}
-      theme={"theme_name"}
-      opts={{ renderer: 'svg' }}
+        option={getOption()} // Use the getOption function to get ECharts options
+        notMerge={true}
+        lazyUpdate={true}
+        theme={"theme_name"}
+        opts={{ renderer: 'svg' }}
       />
       <div className='w-100 d-flex justify-content-center align-items-center flex-wrap row-gap-3 opacity-75'>
         <OpinionTag text="buena calidad" />
