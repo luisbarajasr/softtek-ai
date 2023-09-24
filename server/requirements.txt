@@ -1,0 +1,6 @@
+pinecone-client
+langchain
+pandas
+tqdm
+openai
+flask

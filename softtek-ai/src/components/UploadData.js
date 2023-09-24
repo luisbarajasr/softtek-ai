@@ -18,9 +18,9 @@ const UploadData = () => {
       dynamicTyping: true,
       skipEmptyLines: true, // Ignorar las líneas vacías en el archivo CSV
       complete: async function (results) {
-        results.data.forEach((element) => {
-          products.push(element);
-        });
+        for (let i = 0; i < Math.min(results.data.length, 1000); i++) {
+          products.push(results.data[i]);
+        }
 
         try {
           await uploadCSVFn(products).then((result) => {
@@ -36,13 +36,36 @@ const UploadData = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h1>Upload Data</h1>
-      <input
-        type="file"
-        onChange={(e) => setFile(e.target.files[0])}
-        accept=".csv"
-      />
+      <form
+        onSubmit={handleOnSubmit}
+        style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+      >
+        <label>
+          Select a CSV file:
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            accept=".csv"
+            style={{ padding: "10px", marginTop: "5px" }}
+            placeholder="Choose a CSV file"
+          />
+        </label>
+        <button
+          type="submit"
+          style={{
+            padding: "10px",
+            backgroundColor: "#007BFF",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          {loading ? "Uploading..." : "Upload"}
+        </button>
+      </form>
     </div>
   );
 };
