@@ -1,0 +1,112 @@
+import React from "react";
+import tele from "../public/tele.jpeg";
+import WordsChart from "./WordsChart";
+
+function ProductPageFirstSlide() {
+
+  return (
+    <div className="p-3 mt-2">
+
+
+      <div className='p-1'>
+        <div className="d-flex justify-content-around mb-2">
+          <div className="rounded shadow p-4"
+            style={{
+              width: "48%"
+            }}
+          >
+            <img src={tele}
+                 style={{ height: "200px" }}
+            />
+          </div>
+
+          <div className="rounded shadow  px-4 py-2 d-flex flex-column"
+            style={{
+              width: "20%"
+              }}
+          >
+            <p
+              className="fw-bold mb-0"
+              style={{
+                fontSize: "0.8rem"
+              }}
+            >
+              Porcentaje de felicidad
+            </p>
+            <p
+              className="text-center fw-bold mb-0 "
+              style={{
+                fontSize: "4.5rem"
+                }}
+            >
+              80%
+            </p>
+            <p
+              className="text-end fw-bold text-success"
+              style={{
+                fontSize: "0.8rem"
+                }}
+            >
+              + 20% que el promedio
+            </p>
+
+
+          </div>
+
+          <div className="rounded shadow  px-4 py-2 d-flex flex-column"
+            style={{
+              width: "20%"
+            }}
+          >
+            <p
+              className="fw-bold mb-0"
+              style={{
+                fontSize: "0.8rem"
+              }}
+            >
+              Porcentaje de desagrado
+            </p>
+            <p
+              className="text-center fw-bold mb-0 "
+              style={{
+                fontSize: "4.5rem"
+                }}
+            >
+              35%
+            </p>
+            <p
+              className="text-end fw-bold text-danger"
+              style={{
+                fontSize: "0.8rem"
+                }}
+            >
+              + 10% que el promedio
+            </p>
+          </div>
+        </div>
+
+
+        <div className="d-flex justify-content-around">
+          <div className="rounded shadow p-2"
+            style={{
+              width: "48%"
+            }}
+          >
+            <WordsChart type="positivas"/>
+          </div>
+
+          <div className="rounded shadow p-2"
+            style={{
+              width: "48%"
+            }}
+          >
+            <WordsChart type="negativas"/>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ProductPageFirstSlide

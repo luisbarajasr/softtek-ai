@@ -1,7 +1,6 @@
 import React from 'react';
 
 function OpinionTag(props) {
-    const { texto } = props;
     return (
         <div className="bg-secondary rounded p-2 mx-2 text-white">
             <p className="mb-0 "
@@ -9,7 +8,7 @@ function OpinionTag(props) {
                     fontSize: "0.8rem"
                 }}
             >
-                {texto}
+                {props.text}
             </p>
         </div>
     );
