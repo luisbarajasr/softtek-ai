@@ -17,6 +17,8 @@ const ProductPage = () => {
   let [questionText, setQuestionText] = React.useState("");
   const { setStep, productPageData } = useContext(AppContext);
 
+  console.log("Product name in product page: " + productPageData.name)
+
     return (
       <>
         <div className="d-flex flex-row align-items-center justify-content-between position-fixed z-1 px-4 py-2 w-100"

@@ -1,29 +1,36 @@
-import React from "react"
+import React, { useEffect } from "react";
 import ReactECharts from "echarts-for-react";
 
 function WordsChart(props) {
+  //Make the props.dataframe(string) into a an array of objects
+
+  let data = [];
+
+  useEffect(() => {
+    if (props.dataframe) {
+      console.log("props.dataframe: " + props.dataframe);
+      Object.entries(props.dataframe).forEach(([key, value]) => {
+        data.push({ value: value, name: key });
+      });
+    }
+  }, [props.dataframe]);
+
   const getOptionPie = () => {
     return {
       tooltip: {
-        trigger: 'item',
+        trigger: "item",
       },
       legend: {
-        type: 'scroll',
-        orient: 'vertical',
-        left: 'left',
+        type: "scroll",
+        orient: "vertical",
+        left: "left",
       },
       series: [
         {
-          name: 'Palabras ' + props.type,
-          type: 'pie',
-          radius: '80%',
-          data: [
-            { value: 400, name: 'Buena' },
-            { value: 735, name: 'Excelente' },
-            { value: 580, name: 'Grande' },
-            { value: 484, name: 'Calidad de audio' },
-            { value: 1000, name: 'Buen sonido' },
-          ],
+          name: "Palabras",
+          type: "pie",
+          radius: "80%",
+          data: data,
           label: {
             show: false,
           },
@@ -35,7 +42,7 @@ function WordsChart(props) {
             itemStyle: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
+              shadowColor: "rgba(0, 0, 0, 0.5)",
             },
           },
         },
@@ -48,7 +55,7 @@ function WordsChart(props) {
       <p
         className="fw-bold mb-0 border-bottom pb-1 mb-1"
         style={{
-          fontSize: "0.8rem"
+          fontSize: "0.8rem",
         }}
       >
         Palabras {props.type}
@@ -60,8 +67,7 @@ function WordsChart(props) {
         lazyUpdate={true}
       />
     </>
-
-  )
+  );
 }
 
-export default WordsChart
+export default WordsChart;
