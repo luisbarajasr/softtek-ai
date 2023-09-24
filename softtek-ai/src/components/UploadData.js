@@ -1,38 +1,51 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
-import functions from "../firebase/functions";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "../firebase";
 
 const UploadData = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const uploadCSVFn = functions.httpsCallable("uploadCSV");
+  const uploadCSVFn = httpsCallable(functions, "uploadCSV");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    let products = [];
-    const csv = atob(file.base64.split(",")[1]);
-    Papa.parse(file, {
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true, // Ignorar las líneas vacías en el archivo CSV
-      complete: async function (results) {
-        for (let i = 0; i < Math.min(results.data.length, 1000); i++) {
-          products.push(results.data[i]);
-        }
+    if (file === null) {
+      alert("Please select a file");
+      setLoading(false);
+      return;
+    }
 
-        try {
-          await uploadCSVFn(products).then((result) => {
-            console.log(result);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async function () {
+      const base64String = reader.result.split(",")[1];
+
+      // Now use Papaparse with the base64 data
+      Papa.parse(atob(base64String), {
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        complete: async function (results) {
+          let products = [];
+          for (let i = 0; i < Math.min(results.data.length, 1000); i++) {
+            products.push(results.data[i]);
+          }
+
+          try {
+            await uploadCSVFn({ products: products }).then((result) => {
+              console.log(result);
+              setLoading(false);
+            });
+          } catch (error) {
+            console.log(error);
             setLoading(false);
-          });
-        } catch (error) {
-          console.log(error);
-          setLoading(false);
-        }
-      },
-    });
+          }
+        },
+      });
+    };
   };
 
   return (
