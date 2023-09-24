@@ -14,44 +14,7 @@ import tv1 from "../assets/television.png";
 
 
 function LandingPageCategory(props) {
-  const initialProducts = [
-    {
-      name: "LG 4K UHD Smart TV 55\" UN7300PSC",
-      calification : 3,
-      image: tv1,
-      id : 1
-    },
-    {
-      name : "LG 5K UHD Smart TV 55\" UN7300PSC",
-      calification : 4.5,
-      image: tv1,
-      id : 2
-    },
-    {
-      name : "LG 6K UHD Smart TV 55\" UN7300PSC",
-      calification : 2.5,
-      image: tv1,
-      id : 3
-    },
-    {
-      name: "LG 4K UHD Smart TV 55\" UN7300PSC",
-      calification : 3,
-      image: tv1,
-      id : 1
-    },
-    {
-      name : "LG 5K UHD Smart TV 55\" UN7300PSC",
-      calification : 4.5,
-      image: tv1,
-      id : 2
-    },
-    {
-      name : "LG 6K UHD Smart TV 55\" UN7300PSC",
-      calification : 2.5,
-      image: tv1,
-      id : 3
-    }]
-  const [products, setProducts] = useState(initialProducts)
+  const [products, setProducts] = useState(props.category[1]);
 
   function sortProducts(e) {
     const sorted = [...products];
@@ -66,14 +29,13 @@ function LandingPageCategory(props) {
 
 
 
-
   return(
     <div className="h-100 d-flex flex-column justify-content-center">
       <div className="p-4 pb-0 d-flex align-items-center justify-content-between" >
           <p
             className="fs-1 fw-semibold mb-0 "
           >
-            {props.name}
+            {props.category[0]}
           </p>
 
           <select className="form-select w-25" aria-label="Ordenar productos" onChange={sortProducts}>
@@ -109,7 +71,7 @@ function LandingPageCategory(props) {
 
         {products.map((product) => (
           <SwiperSlide className="shadow rounded-2 py-4 px-2 bg-white hvr-float">
-            <ProductCard name={product.name} image={product.image} calification={product.calification} id={product.id}/>
+            <ProductCard name={product}/>
           </SwiperSlide>
         ))}
 

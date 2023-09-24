@@ -51,9 +51,9 @@ function LandingPage() {
         categoriesDict[category] = [...new Set(categoriesDict[category])];
       }
 
-      // Aquí puedes trabajar con el diccionario de categorías y productos
-      console.log(categoriesDict);
+
       setCategories(Object.entries(categoriesDict));
+      console.log(Object.entries(categoriesDict));
 
     });
   }

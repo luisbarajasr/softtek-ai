@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faStarHalfAlt} from  "@fortawesome/free-solid-svg-icons";
 import {faStar as faStarRegular} from "@fortawesome/free-regular-svg-icons"; // Importa el icono sin relleno
 import queryModel from "../utils/queryModel";
+import MapPrendaToImg from "./MapPrendaToImg";
 
 
 function ProductCard(props) {
@@ -48,7 +49,7 @@ function ProductCard(props) {
           <div className="col-12">
             <img
               className="d-block mx-auto"
-              src={props.image}
+              src={MapPrendaToImg(props.name)}
               alt="tv1"
               style={{
                 maxHeight: "150px"
@@ -68,26 +69,27 @@ function ProductCard(props) {
 
         <div className="row">
           <div className="col-12 text-center">
-            {
-              [...Array(fullStars)].map((e, i) => {
-                return <FontAwesomeIcon icon={faStar} key={i} className="text-warning"/>
-              }
-              )
-            }
-            {
-              [...Array(halfStars)].map((e, i) => {
-                return <FontAwesomeIcon icon={faStarHalfAlt} key={i} className="text-warning"/>
+            estrellas
+            {/*{*/}
+            {/*  [...Array(fullStars)].map((e, i) => {*/}
+            {/*    return <FontAwesomeIcon icon={faStar} key={i} className="text-warning"/>*/}
+            {/*  }*/}
+            {/*  )*/}
+            {/*}*/}
+            {/*{*/}
+            {/*  [...Array(halfStars)].map((e, i) => {*/}
+            {/*    return <FontAwesomeIcon icon={faStarHalfAlt} key={i} className="text-warning"/>*/}
 
-              }
-              )
-            }
-            {
-              [...Array(emptyStars)].map((e, i) => {
-                return <FontAwesomeIcon icon={faStarRegular} key={i} className="text-warning"/>
+            {/*  }*/}
+            {/*  )*/}
+            {/*}*/}
+            {/*{*/}
+            {/*  [...Array(emptyStars)].map((e, i) => {*/}
+            {/*    return <FontAwesomeIcon icon={faStarRegular} key={i} className="text-warning"/>*/}
 
-              }
-              )
-            }
+            {/*  }*/}
+            {/*  )*/}
+            {/*}*/}
           </div>
         </div>
       </div>
