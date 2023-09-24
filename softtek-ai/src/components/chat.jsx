@@ -1,21 +1,43 @@
-import React from "react"
-import { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-function Chat() {
-    const [response, setResponse] = useState(null);
+function Chat(props) {
+    let { response, setResponse, questionText, setQuestionText } = props;
+    let [loading, setLoading] = useState(false);
+
     const [prompt, setPrompt] = useState("");
 
-    const [alturaContainer, setAlturaContainer] = useState(0);
-    const [questionText, setQuestionText] = useState('');
+
 
     const [chatHistory, setChatHistory] = useState([]);
 
+    const inputRef = useRef(null);
+    const responseRef = useRef(null);
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+              inputRef.current && !inputRef.current.contains(event.target) &&
+              responseRef.current && !responseRef.current.contains(event.target)
+            ) {
+                setResponse(null);
+            }
+        }
+
+        document.addEventListener("click", handleClickOutside);
+
+        // Limpiar el listener cuando el componente se desmonte.
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []); // Dependencias vacías para que solo se ejecute una vez.
+
+
+
 
     const handleSubmit = async () => {
-
+        setLoading(true);
         if (!questionText) return;
 
         setChatHistory((prevChat) => [...prevChat, { user: true, text: questionText }]);
@@ -37,6 +59,7 @@ function Chat() {
             });
 
             setResponse(data.response);
+            setLoading(false);
 
         } catch (error) {
             setChatHistory((prevChat) => {
@@ -48,7 +71,6 @@ function Chat() {
         }
 
         setQuestionText(''); // Restablece el valor del input a vacío
-        setAlturaContainer(300); // Cambia la altura a 300px cuando se hace clic en el botón
         console.log(questionText);
     };
 
@@ -74,10 +96,10 @@ function Chat() {
     };
 
     return (
-        <div className="container-general w-100 bg-white rounded z-1" style={{ height: `${alturaContainer}px`, position: "relative" }}>
-            <div className="input-group  position-relative top-0 start-0 ">
-                <div className="form-floating">
+            <div className="input-group position-relative">
+                <div className="form-floating z-2" >
                     <input
+                        ref={inputRef}
                         type="text"
                         className="form-control"
                         id="landing-page-input"
@@ -93,22 +115,29 @@ function Chat() {
                     type="button"
                     onClick={handleSubmit}
                 >
-                    <FontAwesomeIcon icon={faSearch} />
+                    {loading ?
+                          <div className="spinner-grow spinner-grow-sm" role="status">
+                              <span className="visually-hidden">Loading...</span>
+                          </div>
+                      :
+                        <FontAwesomeIcon icon={faSearch} />
+                    }
                 </button>
 
-                {response && <div className="text-dark p-3">Respuesta: {response}</div>}
+                {response &&
+                  <div className="position-absolute bg-white py-4  px-3 rounded "
+                       ref={responseRef}
+                        style={{
+                            width: "99%",
+                            top: "80%",
+                            right: "1%",
+                          }}
+                  >
+                      {response}
+                  </div>
+                }
 
             </div>
-            {/* <div>
-                <input
-                    value={prompt}
-                    onChange={e => setPrompt(e.target.value)}
-                    placeholder="Introduce el prompt"
-                />
-                <button onClick={handleRequest}>Enviar</button>
-                {response && <div className="bg-white">Respuesta: {response}</div>}
-            </div> */}
-        </div>
     );
 }
 

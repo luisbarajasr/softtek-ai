@@ -32,6 +32,24 @@ function LandingPageCategory(props) {
       calification : 2.5,
       image: tv1,
       id : 3
+    },
+    {
+      name: "LG 4K UHD Smart TV 55\" UN7300PSC",
+      calification : 3,
+      image: tv1,
+      id : 1
+    },
+    {
+      name : "LG 5K UHD Smart TV 55\" UN7300PSC",
+      calification : 4.5,
+      image: tv1,
+      id : 2
+    },
+    {
+      name : "LG 6K UHD Smart TV 55\" UN7300PSC",
+      calification : 2.5,
+      image: tv1,
+      id : 3
     }]
   const [products, setProducts] = useState(initialProducts)
 
@@ -51,9 +69,9 @@ function LandingPageCategory(props) {
 
   return(
     <div>
-      <div className="p-4 mb-3 d-flex align-items-center justify-content-between" >
+      <div className="p-4 pb-0 d-flex align-items-center justify-content-between" >
           <p
-            className="fs-1 fw-semibold mb-0"
+            className="fs-1 fw-semibold mb-0 "
           >
             {props.name}
           </p>
@@ -73,10 +91,10 @@ function LandingPageCategory(props) {
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
@@ -85,6 +103,7 @@ function LandingPageCategory(props) {
         style={{
           padding: "30px"
         }}
+        className="pt-4"
       >
 
 

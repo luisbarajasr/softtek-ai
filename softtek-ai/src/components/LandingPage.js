@@ -3,6 +3,11 @@ import Fullpage, {FullpageNavigation, FullpageSection, FullPageSections} from "@
 import backgroundVideo from "../assets/landing_background.mp4";
 import LandingPageFirstSlide from "./LandingPageFirstSlide";
 import LandingPageCategory from "./LandingPageCategory";
+import logoImage from "../assets/logo.png";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+
 
 function LandingPage() {
   const sectionStyle = "vh-100 w-100"
@@ -20,41 +25,58 @@ function LandingPage() {
       id: 3
     }]
   return(
-    <Fullpage>
-      <FullpageNavigation
-      />
-      <FullPageSections>
-        <FullpageSection
-          className={sectionStyle}
-          style={{ position: "relative"}}
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              zIndex: "-1"
-            }}
+    <>
+      <div className="w-100 py-4 px-4 position-fixed z-1 d-flex justify-content-between align-items-center"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        }}
+      >
+        <img src={logoImage} alt="logo" style={{ width: "100px" }} />
+        <button className="btn btn-success me-2">
+          Mi Negocio
+          <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
+        </button>
+      </div>
+      <Fullpage>
+        <FullpageNavigation
+        />
+        <FullPageSections>
+          <FullpageSection
+            className={sectionStyle}
+            style={{ position: "relative"}}
           >
-            <source src={backgroundVideo} type="video/mp4" />
-          </video>
-          <LandingPageFirstSlide />
-        </FullpageSection>
+            <video
+              autoPlay
+              muted
+              loop
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                zIndex: "-1"
+              }}
+            >
+              <source src={backgroundVideo} type="video/mp4" />
+            </video>
+            <LandingPageFirstSlide />
+          </FullpageSection>
 
-        {categories.map((category) => {
-          return (
-            <FullpageSection className={sectionStyle} key={category.id}>
-              <LandingPageCategory name={category.name}/>
-            </FullpageSection>
-          )
-        })}
+          {categories.map((category) => {
+            return (
+              <FullpageSection className={sectionStyle} key={category.id}
+                style={{
+                  paddingTop: "6rem",
+                }}
+              >
+                <LandingPageCategory name={category.name}/>
+              </FullpageSection>
+            )
+          })}
 
-      </FullPageSections>
-    </Fullpage>
+        </FullPageSections>
+      </Fullpage>
+    </>
   )
 }
 
