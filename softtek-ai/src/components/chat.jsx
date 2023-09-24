@@ -96,8 +96,8 @@ function Chat(props) {
     };
 
     return (
-            <div className="input-group position-relative">
-                <div className="form-floating z-2" >
+            <div className="input-group position-relative" style={{zIndex: "10000"}}>
+                <div className="form-floating" >
                     <input
                         ref={inputRef}
                         type="text"
