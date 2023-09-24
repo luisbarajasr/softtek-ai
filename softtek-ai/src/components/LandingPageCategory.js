@@ -68,7 +68,7 @@ function LandingPageCategory(props) {
 
 
   return(
-    <div>
+    <div className="h-100 d-flex flex-column justify-content-center">
       <div className="p-4 pb-0 d-flex align-items-center justify-content-between" >
           <p
             className="fs-1 fw-semibold mb-0 "
@@ -88,12 +88,13 @@ function LandingPageCategory(props) {
           </select>
       </div>
 
+      <div>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: false,
+          disableOnInteraction: true,
         }}
         pagination={{
           clickable: true,
@@ -103,7 +104,6 @@ function LandingPageCategory(props) {
         style={{
           padding: "30px"
         }}
-        className="pt-4"
       >
 
 
@@ -113,12 +113,8 @@ function LandingPageCategory(props) {
           </SwiperSlide>
         ))}
 
-
-
-
-
-
       </Swiper>
+      </div>
     </div>
   )
 }

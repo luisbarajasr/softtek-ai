@@ -54,6 +54,7 @@ function LandingPage() {
       // Aquí puedes trabajar con el diccionario de categorías y productos
       console.log(categoriesDict);
       setCategories(Object.entries(categoriesDict));
+
     });
   }
 
@@ -95,11 +96,13 @@ function LandingPage() {
             <LandingPageFirstSlide />
           </FullpageSection>
 
+
           {categories.map((category) => (
             <FullpageSection className={sectionStyle}>
               <LandingPageCategory category={category} />
             </FullpageSection>
           ))}
+
         </FullPageSections>
       </Fullpage>
     </>

@@ -3,6 +3,7 @@ import { AppContext } from "../AppContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faStarHalfAlt} from  "@fortawesome/free-solid-svg-icons";
 import {faStar as faStarRegular} from "@fortawesome/free-regular-svg-icons"; // Importa el icono sin relleno
+import queryModel from "../utils/queryModel";
 
 
 function ProductCard(props) {
@@ -13,8 +14,25 @@ function ProductCard(props) {
   const { setStep, setProduct } = useContext(AppContext)
 
 
-  function handleProductClick() {
-    setProduct(props.id)
+  async function handleProductClick() {
+    await queryModel('I am going to ask you about the product ' + props.name + ". Important, just give me infromation related to that product")
+    let positiveWords = await queryModel('Give me the positive words related to the product reviews, give me just the words, separated by commas' )
+    let negativeWords = await queryModel('Give me the negative words related to the product reviews, give me just the words, separated by commas' )
+    let positiveReviewsPercentage = await queryModel('Give me the percentage of positive reviews, answer me just the number DONT REPLY with any additional text' )
+    let negativeReviewsPercentage = await queryModel('Give me the percentage of negative reviews, answer me just the number DONT REPLY with any additional text' )
+    let repeatedWords = await queryModel('Give me the most repeated words in the reviews, give me the words and the number of appearances separated by spaces, each word has to be separated by commas')
+    let positiveKeyReviews = await queryModel('Give me the most important positive reviews, give me the reviews separated by commas')
+    let negativeKeyReviews = await queryModel('Give me the most important negative reviews, give me the reviews separated by commas')
+
+    console.log(positiveWords)
+    console.log(negativeWords)
+    console.log(positiveReviewsPercentage)
+    console.log(negativeReviewsPercentage)
+    console.log(repeatedWords)
+    console.log(positiveKeyReviews)
+    console.log(negativeKeyReviews)
+
+
     setStep(2)
   }
 
