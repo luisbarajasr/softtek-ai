@@ -6,6 +6,7 @@ export function AppContextProvider({children}) {
   const [data, setData] = useState(null)
   const [step, setStep] = useState(0)
   const [product, setProduct] = useState(null)
+  const [productPageData, setProductPageData] = useState(null)
 
     return (
     <AppContext.Provider
@@ -15,7 +16,9 @@ export function AppContextProvider({children}) {
         step,
         setStep,
         product,
-        setProduct
+        setProduct,
+        productPageData,
+        setProductPageData
       }}
     >
       {children}

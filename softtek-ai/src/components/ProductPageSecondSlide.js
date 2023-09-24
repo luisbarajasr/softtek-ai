@@ -1,9 +1,10 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 import OpinionTag from "./OpinionTag";
-
+import { AppContext } from "../AppContext";
 
 function ProductPageSecondSlide() {
+  const { productPageData } = React.useContext(AppContext);
 
   const getOption = () => {
     return {

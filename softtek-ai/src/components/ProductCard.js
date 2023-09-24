@@ -11,27 +11,41 @@ function ProductCard(props) {
   let halfStars = Math.ceil(props.calification - fullStars)
   let emptyStars = 5 - fullStars - halfStars
 
-  const { setStep, setProduct } = useContext(AppContext)
+  const { setStep, setProduct, setProductPageData } = useContext(AppContext)
 
 
   async function handleProductClick() {
-    await queryModel('I am going to ask you about the product ' + props.name + ". Important, just give me infromation related to that product")
-    let positiveWords = await queryModel('Give me the positive words related to the product reviews, give me just the words, separated by commas' )
-    let negativeWords = await queryModel('Give me the negative words related to the product reviews, give me just the words, separated by commas' )
-    let positiveReviewsPercentage = await queryModel('Give me the percentage of positive reviews, answer me just the number DONT REPLY with any additional text' )
-    let negativeReviewsPercentage = await queryModel('Give me the percentage of negative reviews, answer me just the number DONT REPLY with any additional text' )
-    let repeatedWords = await queryModel('Give me the most repeated words in the reviews, give me the words and the number of appearances separated by spaces, each word has to be separated by commas')
-    let positiveKeyReviews = await queryModel('Give me the most important positive reviews, give me the reviews separated by commas')
-    let negativeKeyReviews = await queryModel('Give me the most important negative reviews, give me the reviews separated by commas')
+    let promptTemplate = "For the product " + props.name + " answer the following "
+    let reviewAverage = await queryModel(promptTemplate + 'Give me the review average, answer me just the number DONT REPLY with any additional text' )
+    let positiveWords = await queryModel(promptTemplate + 'Give me the positive words related to the product reviews, give me just the words, separated by commas' )
+    let negativeWords = await queryModel(promptTemplate + 'Give me the negative words related to the product reviews, give me just the words, separated by commas' )
+    let positiveReviewsPercentage = await queryModel(promptTemplate + 'Give me the percentage of positive reviews, answer me just the number DONT REPLY with any additional text' )
+    let negativeReviewsPercentage = await queryModel(promptTemplate + 'Give me the percentage of negative reviews, answer me just the number DONT REPLY with any additional text' )
+    let repeatedWords = await queryModel(promptTemplate + 'Give me the most repeated words in the reviews, give me the words and the number of appearances separated by spaces, each word has to be separated by commas')
+    let positiveKeyReviews = await queryModel(promptTemplate + 'Give me the most important positive reviews, give me the reviews separated by commas')
+    let negativeKeyReviews = await queryModel(promptTemplate + 'Give me the most important negative reviews, give me the reviews separated by commas')
+    
+    console.log("Product name: " + props.name)
+    console.log(reviewAverage.response)
+    console.log(positiveWords.response)
+    console.log(negativeWords.response)
+    console.log(positiveReviewsPercentage.response)
+    console.log(negativeReviewsPercentage.response)
+    console.log(repeatedWords.response)
+    console.log(positiveKeyReviews.response)
+    console.log(negativeKeyReviews.response)
 
-    console.log(positiveWords)
-    console.log(negativeWords)
-    console.log(positiveReviewsPercentage)
-    console.log(negativeReviewsPercentage)
-    console.log(repeatedWords)
-    console.log(positiveKeyReviews)
-    console.log(negativeKeyReviews)
-
+    setProductPageData({
+      name: props.name,
+      reviewAverage,
+      positiveWords,
+      negativeWords,
+      positiveReviewsPercentage,
+      negativeReviewsPercentage,
+      repeatedWords,
+      positiveKeyReviews,
+      negativeKeyReviews
+    }) 
 
     setStep(2)
   }

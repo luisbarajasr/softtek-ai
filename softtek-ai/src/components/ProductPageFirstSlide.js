@@ -4,8 +4,10 @@ import WordsChart from "./WordsChart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons"; // Importa el icono sin relleno
+import { AppContext } from "../AppContext";
 
 function ProductPageFirstSlide() {
+  const { productPageData } = useContext(AppContext);
 
   return (
     <div className="p-3 mt-2">
@@ -45,7 +47,7 @@ function ProductPageFirstSlide() {
                     <h8>Department Name: Televisiones</h8>
                   </div>
                   <div className="row">
-                    <h8>1,238 reviews</h8>
+                    <h8>{productPageData.positiveReviewsPercentage}% de las reseñas son positivas</h8>
                   </div>
                 </div>
               </div>
@@ -73,7 +75,7 @@ function ProductPageFirstSlide() {
                 fontSize: "4.5rem"
               }}
             >
-              80%
+              {productPageData.positiveReviewsPercentage}%
             </p>
             <p
               className="text-end fw-bold text-success"
@@ -81,7 +83,7 @@ function ProductPageFirstSlide() {
                 fontSize: "0.8rem"
               }}
             >
-              + 20% que el promedio
+              {}
             </p>
 
 
@@ -106,7 +108,7 @@ function ProductPageFirstSlide() {
                 fontSize: "4.5rem"
               }}
             >
-              35%
+              {productPageData.negativeReviewsPercentage}%
             </p>
             <p
               className="text-end fw-bold text-danger"
@@ -114,7 +116,7 @@ function ProductPageFirstSlide() {
                 fontSize: "0.8rem"
               }}
             >
-              + 10% que el promedio
+            {}
             </p>
           </div>
         </div>

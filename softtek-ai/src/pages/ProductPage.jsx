@@ -15,7 +15,7 @@ import logo from '../assets/logo.png';
 const ProductPage = () => {
   let [response, setResponse] = React.useState(null);
   let [questionText, setQuestionText] = React.useState("");
-  const { setStep, product } = useContext(AppContext);
+  const { setStep, productPageData } = useContext(AppContext);
 
     return (
       <>
@@ -40,7 +40,7 @@ const ProductPage = () => {
                 Análisis de producto
               </h2>
               <p className="mb-0 text-white">
-                Pantalla LG
+                {productPageData.name}
               </p>
             </div>
           </div>
