@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d01b6b7-a9aa-44fd-8409-2d4315b5b615" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/softtek-ai/src/components/MapPrendaToImg.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/softtek-ai/src/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/softtek-ai/src/components/LandingPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/softtek-ai/src/components/LandingPageCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/softtek-ai/src/components/LandingPageCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/softtek-ai/src/components/MapPrendaToImg.js" beforeDir="false" afterPath="$PROJECT_DIR$/softtek-ai/src/components/MapPrendaToImg.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/softtek-ai/src/components/ProductCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/softtek-ai/src/components/ProductCard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

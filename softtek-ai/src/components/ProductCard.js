@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faStarHalfAlt} from  "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,7 @@ import MapPrendaToImg from "./MapPrendaToImg";
 
 
 function ProductCard(props) {
+  let [loading, setLoading] = useState(false)
   let fullStars = Math.floor(props.calification)
   let halfStars = Math.ceil(props.calification - fullStars)
   let emptyStars = 5 - fullStars - halfStars
