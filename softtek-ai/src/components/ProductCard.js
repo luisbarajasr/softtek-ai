@@ -17,6 +17,7 @@ function ProductCard(props) {
 
 
   async function handleProductClick() {
+    setLoading(true);
     let promptTemplate = "For the product " + props.name + " answer the following "
     let reviewAverage = await queryModel(promptTemplate + 'Give me the review average, answer me just the number DONT REPLY with any additional text' )
     let positiveWords = await queryModel(promptTemplate + 'Give me the positive words related to the product reviews, give me just the words, separated by commas' )
@@ -49,11 +50,17 @@ function ProductCard(props) {
       negativeKeyReviews
     }) 
 
+    setLoading(false);
     setStep(2)
   }
 
   return (
     <>
+      {loading &&
+        <div className="spinner spinner-border text-success position-absolute" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+      }
       <div className="container"
         style={{
           cursor: "pointer"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import tele from "../public/tele.jpeg";
 import WordsChart from "./WordsChart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
