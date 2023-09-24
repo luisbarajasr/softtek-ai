@@ -26,7 +26,7 @@ function ProductPageFirstSlide() {
           >
             <div className="row">
               <div className="col">
-                <img src={tele} style={{ height: "200px" }} />
+                <img src={productPageData.img} style={{ height: "200px" }} />
               </div>
               <div className="col">
                 <div className="col">
