@@ -1,8 +1,8 @@
 import React from "react";
 import tv1 from "../assets/television.png";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
-import {SwiperSlide} from "swiper/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { SwiperSlide } from "swiper/react";
 
 function ProductCard() {
   return (

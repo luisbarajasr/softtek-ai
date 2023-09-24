@@ -8,6 +8,9 @@ import 'swiper/swiper-bundle.css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import Fullpage, { FullPageSections, FullpageSection, FullpageNavigation } from "@ap.cx/react-fullpage";
 
+import OpinionTag from '../components/OpinionTag.jsx';
+import { color } from 'echarts';
+
 const Producto = () => {
 
     const getOptionPie = () => {
@@ -220,10 +223,40 @@ const Producto = () => {
 
                 </FullpageSection>
 
-                <FullpageSection>
-                    <div>
-                        <p>siguiente pagina</p>
+                <FullpageSection style={{ position: "relative" }}>
+
+                    <div className='container-fluid p-0 m-0' style={{ position: "relative", overflowX: "hidden" }}>
+                        <div className='container-fluid' style={{
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            zIndex: "-1"
+                        }}>
+                        </div>
+                        <div className='container'>
+                            <div className='chat-container row p-5 gap-5'>
+                                <div className='col'>
+                                    <textarea className='w-100 bg-white rounded shadow' style={{ resize: "none", height: "400px" }} />
+                                    <p className='text-muted'>Reseña positiva usando opiniones de clientes</p>
+                                </div>
+                                <div className='col'>
+                                    <textarea className='w-100 bg-white rounded shadow' style={{ resize: "none", height: "400px" }} />
+                                    <p className='text-muted'>Reseña negativa usando opiniones de clientes</p>
+                                </div>
+                            </div>
+                            <div className='w-100 d-flex justify-content-center align-items-center flex-wrap row-gap-3 opacity-75'>
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                                <OpinionTag texto="buena calidad" />
+                            </div>
+                        </div>
                     </div>
+
                 </FullpageSection>
             </FullPageSections>
         </Fullpage>
