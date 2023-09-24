@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Fullpage, {FullpageNavigation, FullpageSection, FullPageSections} from "@ap.cx/react-fullpage";
 import backgroundVideo from "../assets/landing_background.mp4";
 import LandingPageFirstSlide from "./LandingPageFirstSlide";
@@ -7,23 +7,50 @@ import logoImage from "../assets/logo.png";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+
 
 
 function LandingPage() {
   const sectionStyle = "vh-100 w-100"
-  let categories = [
-    {
-      name: "Televisores",
-      id: 1
-    },
-    {
-      name: "Celulares",
-      id: 2
-    },
-    {
-      name: "Laptops",
-      id: 3
-    }]
+  const [categories, setCategories] = React.useState([]);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  function getCategories() {
+    const categoriesCol = collection(db, "products");
+
+    getDocs(categoriesCol).then((querySnapshot) => {
+      // Inicializamos un objeto vacío para almacenar las categorías y productos
+      const categoriesDict = {};
+
+      querySnapshot.docs.forEach((doc) => {
+        const data = doc.data();
+
+        const categoryName = data['Department Name'];
+        const productName = data['Product Name'];
+
+        if (categoryName) {
+          // Si la categoría no existe en el diccionario, la inicializamos con un arreglo vacío
+          if (!categoriesDict[categoryName]) {
+            categoriesDict[categoryName] = [];
+          }
+
+          // Agregamos el producto a la categoría correspondiente
+          categoriesDict[categoryName].push(productName);
+        }
+      });
+
+      // Aquí puedes trabajar con el diccionario de categorías y productos
+      console.log(categoriesDict);
+    });
+  }
+
+
+
   return(
     <>
       <div className="w-100 py-4 px-4 position-fixed z-1 d-flex justify-content-between align-items-center"
@@ -64,7 +91,7 @@ function LandingPage() {
 
           {categories.map((category) => {
             return (
-              <FullpageSection className={sectionStyle} key={category.id}
+              <FullpageSection className={sectionStyle}
                 style={{
                   paddingTop: "6rem",
                 }}
