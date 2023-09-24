@@ -41,7 +41,7 @@ function LandingPageFirstSlide() {
         <Chat />
       </div>
 
-      <div className="w-75 d-flex justify-content-center flex-row flex-wrap row-gap-3 opacity-75">
+      <div className="w-75 d-flex justify-content-center static flex-row flex-wrap row-gap-3 opacity-75">
         {randomQuestions.map((question, index) => {
           return (
             <QuestionTag key={index} question={question} />
