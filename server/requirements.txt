@@ -1,4 +1,6 @@
 pinecone-client
+functions_framework
+tiktoken
 langchain
 pandas
 tqdm
