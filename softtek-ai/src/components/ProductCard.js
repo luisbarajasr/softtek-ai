@@ -55,6 +55,7 @@ function ProductCard(props) {
     setProductPageData({
       name: props.name,
       img : MapPrendaToImg(props.name),
+      promptTemplate,
       reviewAverage,
       reviewsCount,
       positiveWords,

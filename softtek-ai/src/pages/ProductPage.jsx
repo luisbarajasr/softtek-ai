@@ -15,7 +15,7 @@ import logo from '../assets/logo.png';
 const ProductPage = () => {
   let [response, setResponse] = React.useState(null);
   const { setStep, productPageData } = useContext(AppContext);
-  let [questionText, setQuestionText] = React.useState("For the product " + productPageData.name + " answer the following ");
+  let [questionText, setQuestionText] = React.useState("");
 
   console.log("Product name in product page: " + productPageData.name)
 
@@ -47,7 +47,7 @@ const ProductPage = () => {
             </div>
           </div>
           <div className="w-25">
-            <Chat response={response} setResponse={setResponse} questionText={questionText} setQuestionText={setQuestionText}/>
+            <Chat response={response} setResponse={setResponse} questionText={productPageData.promptTemplate + questionText} setQuestionText={setQuestionText}/>
           </div>
         </div>
 
