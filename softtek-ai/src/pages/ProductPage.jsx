@@ -14,8 +14,8 @@ import logo from '../assets/logo.png';
 
 const ProductPage = () => {
   let [response, setResponse] = React.useState(null);
-  let [questionText, setQuestionText] = React.useState("");
   const { setStep, productPageData } = useContext(AppContext);
+  let [questionText, setQuestionText] = React.useState("For the product " + productPageData.name + " answer the following ");
 
   console.log("Product name in product page: " + productPageData.name)
 
