@@ -3,6 +3,11 @@ import './section.css';
 import tele from '../public/tele.jpeg';
 import ReactECharts from 'echarts-for-react';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+import { Autoplay, Pagination } from 'swiper/modules';
+import Fullpage, { FullPageSections, FullpageSection, FullpageNavigation } from "@ap.cx/react-fullpage";
+
 const Producto = () => {
 
     const getOptionPie = () => {
@@ -141,67 +146,87 @@ const Producto = () => {
     };
 
     return (
-        <div className='p-4 rounded' style={{ height: '1000px', width: 'full' }}>
-            <div className='text-dark font-bold'>
-                <h1>Television LG </h1>
-            </div>
+        <Fullpage>
 
-            <div className='text-dark p-4 '>
-                <div className='row' style={{ width: "1300px", height: "300px" }}>
-                    <div className='col-sm'>
-                        <div className='card rounded'>
-                            <div className='card-body'>
-                                <ReactECharts
-                                    style={{ height: '250px' }}
-                                    option={getOptionPie()} // Use the getOption function to get ECharts options
-                                    notMerge={true}
-                                    lazyUpdate={true}
-                                    theme={'theme_name'}
-                                />
+            <FullpageNavigation />
+            <FullPageSections>
+                <FullpageSection>
+
+                    <div className='rounded' style={{ height: '1000px', width: 'full' }}>
+                        <div className='text-dark font-bold' style={{ display: 'flex', justifyContent: 'center' }}>
+                            <h1>Television LG</h1>
+                        </div>
+
+                        <div className='container'>
+
+                            <div className='text-dark p-4 '>
+                                <div className='row' style={{ width: "1300px", height: "300px" }}>
+                                    <div className='col-sm'>
+                                        <div className='card rounded'>
+                                            <div className='card-body'>
+                                                <ReactECharts
+                                                    style={{ height: '250px' }}
+                                                    option={getOptionPie()} // Use the getOption function to get ECharts options
+                                                    notMerge={true}
+                                                    lazyUpdate={true}
+                                                    theme={'theme_name'}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-sm'>
+                                        <div className='card rounded'>
+                                            <div className='card-body'>
+                                                <ReactECharts
+                                                    style={{ height: '250px' }}
+                                                    option={getOptionPie2()} // Use the getOption function to get ECharts options
+                                                    notMerge={true}
+                                                    lazyUpdate={true}
+                                                    theme={'theme_name'}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className='col-sm'>
-                        <div className='card rounded'>
-                            <div className='card-body'>
-                                <ReactECharts
-                                    style={{ height: '250px' }}
-                                    option={getOptionPie2()} // Use the getOption function to get ECharts options
-                                    notMerge={true}
-                                    lazyUpdate={true}
-                                    theme={'theme_name'}
-                                />
+                            <div className='text-dark row'>
+                                <div className='col px-5'>
+                                    <div className='shadow bg-white text-center'>
+                                        <img src={tele} alt="" height={300} width={300} />
+                                        <p >Television LG</p>
+                                    </div>
+                                </div>
+                                <div className='col'>
+                                    <div className="card rounded h-full">
+                                        <div className="card-body h-full">
+                                            <ReactECharts
+                                                style={{ height: "250px" }}
+                                                option={getOption2()} // Use the getOption function to get ECharts options
+                                                notMerge={true}
+                                                lazyUpdate={true}
+                                                theme={"theme_name"}
+                                                onChartReady={onChartReadyCallback} // Use the onChartReadyCallback function
+                                                onEvents={EventsDict}
+                                                opts={{ renderer: 'svg' }}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-            <div className='text-dark row'>
-                <div className='col px-5'>
-                    <div className='shadow bg-white d-flex justify-content-center'>
-                        <img className='' src={tele} alt="" height={300} width={300} />
-                    </div>
-
-                </div>
-                <div className='col'>
-                    <div className="card rounded">
-                        <div className="card-body h-full">
-                            <ReactECharts
-                                style={{ height: "250px" }}
-                                option={getOption2()} // Use the getOption function to get ECharts options
-                                notMerge={true}
-                                lazyUpdate={true}
-                                theme={"theme_name"}
-                                onChartReady={onChartReadyCallback} // Use the onChartReadyCallback function
-                                onEvents={EventsDict}
-                                opts={{ renderer: 'svg' }}
-                            />
                         </div>
+                    </div >
+
+                </FullpageSection>
+
+                <FullpageSection>
+                    <div>
+                        <p>siguiente pagina</p>
                     </div>
-                </div>
-            </div>
-        </div >
+                </FullpageSection>
+            </FullPageSections>
+        </Fullpage>
     );
 };
 

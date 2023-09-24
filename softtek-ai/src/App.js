@@ -12,7 +12,7 @@ function App() {
 
       <header className="App-header">
         <Product />
-        <Landing_page />
+        {/* <Landing_page /> */}
       </header>
     </div>
   );

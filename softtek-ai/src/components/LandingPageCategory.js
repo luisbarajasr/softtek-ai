@@ -9,21 +9,16 @@ import { faStar, faTelevision } from '@fortawesome/free-solid-svg-icons';
 import ProductCard from "./ProductCard";
 import tv1 from "../assets/television.png";
 
-
-
-
-
-
 function LandingPageCategory() {
-  return(
+  return (
     <div>
       <div className="p-4 mb-3 d-flex align-items-center text-white" >
-          {/*<FontAwesomeIcon icon={faTelevision} className="text-white me-3" style={{fontSize: "2rem"}} />*/}
-          <p
-            className="fs-1 fw-semibold mb-0"
-          >
-            Televisores
-          </p>
+        {/*<FontAwesomeIcon icon={faTelevision} className="text-white me-3" style={{fontSize: "2rem"}} />*/}
+        <p
+          className="fs-1 fw-semibold mb-0"
+        >
+          Televisores
+        </p>
       </div>
 
       <Swiper
