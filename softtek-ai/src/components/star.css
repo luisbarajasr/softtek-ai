@@ -1,0 +1,15 @@
+.star-half {
+    position: relative;
+}
+
+.star-half .fa-star {
+    color: #ffc107; /* Color amarillo para la estrella */
+}
+
+.star-half .fa-star-half-alt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #e4e5e9; /* Color gris para la estrella vacía */
+    clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%); /* Mostrar solo la mitad izquierda */
+}

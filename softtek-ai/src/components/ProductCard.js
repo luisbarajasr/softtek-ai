@@ -1,18 +1,36 @@
-import React from "react";
-import tv1 from "../assets/television.png";
+import React, { useContext } from "react";
+import { AppContext } from "../AppContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
-import {SwiperSlide} from "swiper/react";
+import {faStar, faStarHalfAlt} from  "@fortawesome/free-solid-svg-icons";
+import {faStar as faStarRegular} from "@fortawesome/free-regular-svg-icons"; // Importa el icono sin relleno
 
-function ProductCard() {
+
+function ProductCard(props) {
+  let fullStars = Math.floor(props.calification)
+  let halfStars = Math.ceil(props.calification - fullStars)
+  let emptyStars = 5 - fullStars - halfStars
+
+  const { setStep, setProduct } = useContext(AppContext)
+
+
+  function handleProductClick() {
+    setProduct(props.id)
+    setStep(2)
+  }
+
   return (
-    <SwiperSlide className="shadow rounded-2 py-4 px-2 bg-white">
-      <div className="container">
+    <>
+      <div className="container"
+        style={{
+          cursor: "pointer"
+        }}
+       onClick={handleProductClick}
+      >
         <div className="row">
           <div className="col-12">
             <img
               className="d-block mx-auto"
-              src={tv1}
+              src={props.image}
               alt="tv1"
               style={{
                 maxHeight: "150px"
@@ -25,23 +43,38 @@ function ProductCard() {
             <p
               className="text-center mb-0"
             >
-              LG 4K UHD Smart TV 55" UN7300PSC
+              {props.name}
             </p>
           </div>
         </div>
 
         <div className="row">
           <div className="col-12 text-center">
-            <FontAwesomeIcon icon={faStar} className="text-warning" />
-            <FontAwesomeIcon icon={faStar} className="text-warning" />
-            <FontAwesomeIcon icon={faStar} className="text-warning" />
-            <FontAwesomeIcon icon={faStar} className="text-warning" />
-            <FontAwesomeIcon icon={faStar} className="text-warning" />
+            {
+              [...Array(fullStars)].map((e, i) => {
+                return <FontAwesomeIcon icon={faStar} key={i} className="text-warning"/>
+              }
+              )
+            }
+            {
+              [...Array(halfStars)].map((e, i) => {
+                return <FontAwesomeIcon icon={faStarHalfAlt} key={i} className="text-warning"/>
+
+              }
+              )
+            }
+            {
+              [...Array(emptyStars)].map((e, i) => {
+                return <FontAwesomeIcon icon={faStarRegular} key={i} className="text-warning"/>
+
+              }
+              )
+            }
           </div>
         </div>
       </div>
 
-    </SwiperSlide>
+    </>
   )
 }
 

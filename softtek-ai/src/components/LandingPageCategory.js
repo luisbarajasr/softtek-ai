@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { Autoplay, Pagination } from 'swiper/modules';
+import "./LandingPageCategory.css"
+import "hover.css/css/hover.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faTelevision } from '@fortawesome/free-solid-svg-icons';
@@ -14,16 +16,61 @@ import tv1 from "../assets/television.png";
 
 
 
-function LandingPageCategory() {
+function LandingPageCategory(props) {
+  const initialProducts = [
+    {
+      name: "LG 4K UHD Smart TV 55\" UN7300PSC",
+      calification : 3,
+      image: tv1,
+      id : 1
+    },
+    {
+      name : "LG 5K UHD Smart TV 55\" UN7300PSC",
+      calification : 4.5,
+      image: tv1,
+      id : 2
+    },
+    {
+      name : "LG 6K UHD Smart TV 55\" UN7300PSC",
+      calification : 2.5,
+      image: tv1,
+      id : 3
+    }]
+  const [products, setProducts] = useState(initialProducts)
+
+  function sortProducts(e) {
+    const sorted = [...products];
+    if (e.target.value === "1") { // Ordenar productos por mayor calificación
+      sorted.sort((a, b) => (a.calification < b.calification) ? 1 : -1);
+    } else if (e.target.value === "2") { // Ordenar productos por menor calificación
+      sorted.sort((a, b) => (a.calification > b.calification) ? 1 : -1);
+    }
+
+    setProducts(sorted);
+  }
+
+
+
+
   return(
     <div>
-      <div className="p-4 mb-3 d-flex align-items-center text-white" >
-          {/*<FontAwesomeIcon icon={faTelevision} className="text-white me-3" style={{fontSize: "2rem"}} />*/}
+      <div className="p-4 mb-3 d-flex align-items-center justify-content-between" >
           <p
             className="fs-1 fw-semibold mb-0"
           >
-            Televisores
+            {props.name}
           </p>
+
+          <select className="form-select w-25" aria-label="Ordenar productos" onChange={sortProducts}>
+            <option
+              selected
+              hidden
+            >
+              Ordenar productos
+            </option>
+            <option value="1">Mayor calificación</option>
+            <option value="2">Menor calificación</option>
+          </select>
       </div>
 
       <Swiper
@@ -43,222 +90,16 @@ function LandingPageCategory() {
         }}
       >
 
-        <SwiperSlide className="shadow rounded-2 py-4 px-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <img
-                  className="d-block mx-auto"
-                  src={tv1}
-                  alt="tv1"
-                  style={{
-                    maxHeight: "150px"
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <p
-                  className="text-center mb-0"
-                >
-                  LG 4K UHD Smart TV 55" UN7300PSC
-                </p>
-              </div>
-            </div>
 
-            <div className="row">
-              <div className="col-12 text-center">
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-              </div>
-            </div>
-          </div>
+        {products.map((product) => (
+          <SwiperSlide className="shadow rounded-2 py-4 px-2 bg-white hvr-float">
+            <ProductCard name={product.name} image={product.image} calification={product.calification} id={product.id}/>
+          </SwiperSlide>
+        ))}
 
-        </SwiperSlide>
-        <SwiperSlide className="shadow rounded-2 py-4 px-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <img
-                  className="d-block mx-auto"
-                  src={tv1}
-                  alt="tv1"
-                  style={{
-                    maxHeight: "150px"
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <p
-                  className="text-center mb-0"
-                >
-                  LG 4K UHD Smart TV 55" UN7300PSC
-                </p>
-              </div>
-            </div>
 
-            <div className="row">
-              <div className="col-12 text-center">
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-              </div>
-            </div>
-          </div>
 
-        </SwiperSlide>
-        <SwiperSlide className="shadow rounded-2 py-4 px-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <img
-                  className="d-block mx-auto"
-                  src={tv1}
-                  alt="tv1"
-                  style={{
-                    maxHeight: "150px"
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <p
-                  className="text-center mb-0"
-                >
-                  LG 4K UHD Smart TV 55" UN7300PSC
-                </p>
-              </div>
-            </div>
 
-            <div className="row">
-              <div className="col-12 text-center">
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-              </div>
-            </div>
-          </div>
-
-        </SwiperSlide>
-        <SwiperSlide className="shadow rounded-2 py-4 px-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <img
-                  className="d-block mx-auto"
-                  src={tv1}
-                  alt="tv1"
-                  style={{
-                    maxHeight: "150px"
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <p
-                  className="text-center mb-0"
-                >
-                  LG 4K UHD Smart TV 55" UN7300PSC
-                </p>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-12 text-center">
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-              </div>
-            </div>
-          </div>
-
-        </SwiperSlide>
-        <SwiperSlide className="shadow rounded-2 py-4 px-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <img
-                  className="d-block mx-auto"
-                  src={tv1}
-                  alt="tv1"
-                  style={{
-                    maxHeight: "150px"
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <p
-                  className="text-center mb-0"
-                >
-                  LG 4K UHD Smart TV 55" UN7300PSC
-                </p>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-12 text-center">
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-              </div>
-            </div>
-          </div>
-
-        </SwiperSlide>
-        <SwiperSlide className="shadow rounded-2 py-4 px-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <img
-                  className="d-block mx-auto"
-                  src={tv1}
-                  alt="tv1"
-                  style={{
-                    maxHeight: "150px"
-                  }}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <p
-                  className="text-center mb-0"
-                >
-                  LG 4K UHD Smart TV 55" UN7300PSC
-                </p>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-12 text-center">
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-                <FontAwesomeIcon icon={faStar} className="text-warning" />
-              </div>
-            </div>
-          </div>
-
-        </SwiperSlide>
 
 
       </Swiper>

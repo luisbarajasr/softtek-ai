@@ -1,13 +1,15 @@
-import React from 'react';
-import Fullpage, { FullPageSections, FullpageSection, FullpageNavigation } from "@ap.cx/react-fullpage";
-import LandingPage from "./components/LandingPage";
-import LandingPageCategory from "./components/LandingPageCategory";
-import backgroundVideo from "./assets/landing_background.mp4";
-import Landing_page from './pages/landing.tsx';
+import React, { useContext } from 'react';
+import { AppContext, AppContextProvider } from './AppContext';
+import Routes from './Routes';
+
 
 function App() {
+  const { data, setData } = useContext(AppContext)
+
   return (
-    <Landing_page />
+    <AppContextProvider>
+      <Routes />
+    </AppContextProvider>
   );
 }
 

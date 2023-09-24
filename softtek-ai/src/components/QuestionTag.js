@@ -1,6 +1,6 @@
 import React from 'react';
 
-function QuestionTag() {
+function QuestionTag(props) {
   return (
     <div className="bg-light-subtle rounded p-2 mx-2">
       <p className="mb-0 "
@@ -8,7 +8,7 @@ function QuestionTag() {
           fontSize: "0.8rem"
         }}
       >
-        Dime cual es mi producto más vendido
+        {props.question}
       </p>
     </div>
   );
