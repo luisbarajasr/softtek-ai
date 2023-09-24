@@ -13,9 +13,6 @@ import tv1 from "../assets/television.png";
 
 
 
-
-
-
 function LandingPageCategory(props) {
   const initialProducts = [
     {

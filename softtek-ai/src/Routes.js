@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from './AppContext';
 import LandingPage from './components/LandingPage';
+import ProductPage from "./pages/ProductPage";
 
 
 export default function Routes() {
@@ -12,7 +13,7 @@ export default function Routes() {
     : step === 1 ?
     <div>Category Page</div>
     : step === 2 ?
-    <div>Product Page</div>
+    <ProductPage />
     :
     <div>404</div>
   )
