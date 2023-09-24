@@ -3,17 +3,22 @@ import ReactECharts from "echarts-for-react";
 
 function WordsChart(props) {
   //Make the props.dataframe(string) into a an array of objects
+  console.log(typeof props.dataframe);
+  console.log(props.dataframe);
+
+  const prueba = JSON.parse(props.dataframe);
+  console.log(prueba);
 
   let data = [];
 
-  useEffect(() => {
-    if (props.dataframe) {
-      console.log("props.dataframe: " + props.dataframe);
-      Object.entries(props.dataframe).forEach(([key, value]) => {
-        data.push({ value: value, name: key });
-      });
-    }
-  }, [props.dataframe]);
+  // useEffect(() => {
+  //   if (props.dataframe) {
+  //     console.log("props.dataframe: " + props.dataframe);
+  //     Object.entries(props.dataframe).forEach(([key, value]) => {
+  //       data.push({ value: value, name: key });
+  //     });
+  //   }
+  // }, [props.dataframe]);
 
   const getOptionPie = () => {
     return {
@@ -30,7 +35,7 @@ function WordsChart(props) {
           name: "Palabras",
           type: "pie",
           radius: "80%",
-          data: data,
+          data: prueba,
           label: {
             show: false,
           },
